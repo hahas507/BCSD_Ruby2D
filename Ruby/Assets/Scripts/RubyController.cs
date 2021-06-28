@@ -29,6 +29,12 @@ public class RubyController : MonoBehaviour
     [SerializeField]
     private GameObject projectilePrefab;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip CogClip;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -37,6 +43,8 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -128,5 +136,12 @@ public class RubyController : MonoBehaviour
         //Debug.Log(lookDirection);
 
         animator.SetTrigger("Launch");
+
+        PlaySound(CogClip);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
